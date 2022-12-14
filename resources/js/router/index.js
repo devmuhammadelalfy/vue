@@ -3,12 +3,11 @@ import CompanyIndex from "../components/company/CompanyIndex";
 
 const routes = [
     {
-        path : '/dashbord',
-        name : companies.index,
-        component : CompanyIndex
+        path: '/dashboard',
+        name: 'companies.index',
+        component: CompanyIndex
 
     }
-
 
 ];
 
