@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', function () {
+    return view('dashboard');
+})->where('any', '.*');
+//.* -> . means any character and * means 0 or more characters
 
+/******************************************************************************************/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
