@@ -5,10 +5,12 @@ import About from "../components/company/About.vue";
 import ColorRange from "../components/ColorRange.vue";
 import LogoSympol from "../components/LogoSympol.vue";
 import NotFound from "../components/NotFound.vue";
+import PostsIndex from "../components/povilas/Posts/Index.vue";
+
 
 const routes = [
     {
-        path: '*',
+        path: "/:catchAll(.*)",
         component: NotFound
     },
     {
@@ -30,6 +32,10 @@ const routes = [
     {
         path: '/colors',
         component: ColorRange
+    },
+    {
+        path: '/posts',
+        component: PostsIndex
     },
     //
     // {
