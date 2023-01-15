@@ -10,53 +10,41 @@
                                 #
                             </th>
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                First
+                                title
                             </th>
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                Last
+                                content
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                Handle
-                            </th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="bg-gray-100 border-b">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                        <tr class="bg-gray-100 border-b" v-for="post in posts">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{post.id}}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                Mark
+                                {{post.title}}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                Otto
-                            </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                @mdo
+                                {{post.content}}
                             </td>
                         </tr>
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                Jacob
-                            </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                Thornton
-                            </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                @fat
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-100 border-b">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                            <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
-                                Larry the Bird
-                            </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                @twitter
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div></template>
+    </div>
+</template>
+<script>
+import usePosts from "../../../composables/posts";
+import {onMounted} from "vue";
+export default {
+    setup(){
+        const {posts , getPosts} = usePosts()
+        onMounted(getPosts)
+        return {posts};
+    }
+
+}
+</script>
