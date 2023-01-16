@@ -3,34 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Api\PostResource;
-use App\Models\Post;
+use App\Http\Resources\Api\categoriesResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
-class PostController extends Controller
+class categoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $orderColumn = \request('orderColumn' , 'created_at');
-        $orderDirection = \request('orderDirection' , 'asc');
-        if (!in_array(\request('orderColumn') , ['id', 'title' , 'created_at'])){
-            $orderColumn = 'created_at';
-        }
-        if (!in_array(\request('orderDirection') , ['asc' , 'desc'])){
-            $orderDirection= 'asc';
-        }
-        $posts = Post::with('category')->when(request('category_id'),function ($builder) {
-            $builder->where('category_id' , request('category_id'));
-    })
-            ->orderBy($orderColumn , $orderDirection)
-            ->paginate(5);
-
-        return PostResource::collection($posts) ;
+        $categories = Category::all();
+        return categoriesResource::collection($categories);
     }
 
     /**
